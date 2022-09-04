@@ -4,10 +4,12 @@ import requests
 import subprocess
 from sys import argv
 from rich import print as rprint
-DEBUG = False
-if argv[1].upper() == "DEBUG" or "d":
-    DEBUG = True
-
+try: 
+    DEBUG = False
+    if argv[1].upper() == "DEBUG" or "d":
+        DEBUG = True
+except IndexError:
+    DEBUG = False
 
 def clear() -> str:
     return "\n"*32
