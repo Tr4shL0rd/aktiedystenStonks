@@ -2,6 +2,7 @@ import json
 import time
 import requests
 import subprocess
+import csv
 from sys import argv
 from rich import print as rprint
 try: 
@@ -21,6 +22,15 @@ def popUp(message: str, timeout=5):
 
 
 def main():
+    with open("boughtPrices.csv", "r") as boughtPricesFile:
+        reader = csv.reader(boughtPricesFile)
+        next(reader)
+        stockName = []
+        stockPrice = []
+        for row in reader:
+            stockName.append(row[0])
+            stockPrice.append(row[1])
+        
     url = "https://aktiedysten.dk/z/chart?q=s.i1d.full(NYSE~SPOT)"
 
     response = requests.request("GET", url)
@@ -34,7 +44,7 @@ def main():
         f"Current Price: {currentPrice}$"
     )
     if DEBUG: print(price)
-    if 103.9 <= currentPrice:  # if boughtPrice >= currentPrice:
+    if float(stockPrice[0]) <= currentPrice:  # if boughtPrice >= currentPrice:
         rprint(f"[green]diff: {round(currentPrice-beforePrice,1)}$[/green]")
         rprint("[underline bold green]!PROFIT BOIS![/underline bold green]")
         popUp(
