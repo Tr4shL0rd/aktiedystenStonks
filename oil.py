@@ -27,11 +27,13 @@ def clear() -> str:
     return "\n"*32
 
 
+
 def popUp(message: str, timeout=5):
-    if POPUP:
+    try:
         subprocess.Popen(["notify-send", "-a", STOCKNAME,
                      "-t", str(timeout*1000), message])
-
+    except FileNotFoundError:
+        pass
 
 def main():
     with open("boughtPrices.csv", "r") as boughtPricesFile:
