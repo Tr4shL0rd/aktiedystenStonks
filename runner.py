@@ -5,6 +5,7 @@ import requests
 import datetime
 from rich.table import Table
 from rich.console import Console
+import helper
 def wifiCheck():
     try:
         return requests.get("https://www.google.com").status_code
@@ -113,16 +114,22 @@ def main():
                     ) # /checkTime
                 ) # /str
             ) # /add_row
-
+    exits = ["quit", "exit", "q", "stop"]
     console.print(table)
     choice = input("Number: ").strip()
-
-    if choice.isalpha() and choice in letterScripts:
-        program = scripts[letterScripts[choice]][0]
-    elif choice.isdigit() and  int(choice) > len(scripts):
-        print(f"number cant be higher than {len(scripts)}")
-    else:
-        program = scripts[choice][0]
+    if choice in exits:
+        exit()
+    try:
+        if choice.isalpha() and choice in letterScripts:
+            program = scripts[letterScripts[choice]][0]
+        elif choice.isdigit() and  int(choice) > len(scripts):
+            print(f"number cant be higher than {len(scripts)}")
+        else:
+            program = scripts[choice][0]
+    except KeyError:
+        helper.clear()
+        print(f"{choice} is not valid")
+        main()
     print(f"starting {program}...")
     os.system(f"python {program}")
 try:
