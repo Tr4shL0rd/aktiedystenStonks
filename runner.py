@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 import os
-import csv
 import json
-from urllib import response
 import requests
 from rich.table import Table
 from rich.console import Console

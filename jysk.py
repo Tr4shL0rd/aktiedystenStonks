@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
+import csv
 import json
 import time
 import requests
 import subprocess
-import csv
 from sys import argv
 from rich import print as rprint
 
