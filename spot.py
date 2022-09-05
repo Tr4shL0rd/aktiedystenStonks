@@ -4,7 +4,7 @@ import csv
 import json
 import time
 import requests
-import subprocess
+from helper import popUp,clear
 from sys import argv
 from rich import print as rprint
 
@@ -19,19 +19,6 @@ try:
         DEBUG = True
 except IndexError:
     DEBUG = False
-
-
-def clear() -> str:
-    return "\n"*32
-
-
-
-def popUp(message: str, timeout=5):
-    try:
-        subprocess.Popen(["notify-send", "-a", STOCKNAME,
-                     "-t", str(timeout*1000), message])
-    except FileNotFoundError:
-        pass
 
 def main():
     with open("boughtPrices.csv", "r") as boughtPricesFile:
@@ -61,22 +48,34 @@ def main():
         rprint(f"[green]diff: {round(currentPrice-beforePrice,1)}{UNIT}[/green]")
         rprint("[underline bold green]!PROFIT BOIS![/underline bold green]")
         popUp(
-            f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nPROFIT", config["popUp_delay"])
+                f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nPROFIT", 
+                config["popUp_delay"],
+                STOCKNAME
+            )
     elif currentPrice < beforePrice:
         rprint(f"[red]diff: {round(currentPrice-beforePrice,1)}{UNIT}[/red]")
         rprint("[underline  bold red]FALLING![/underline bold red]")
         popUp(
-            f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nFalling", config["popUp_delay"])
+                f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nFalling", 
+                config["popUp_delay"],
+                STOCKNAME
+            )
     elif currentPrice > beforePrice:
         rprint(f"[green]diff: {round(currentPrice-beforePrice,1)}{UNIT}[/green]")
         rprint("[underline bold green]RISING[/underline bold green]")
         popUp(
-            f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nRISING", config["popUp_delay"])
+                f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nRISING", 
+                config["popUp_delay"],
+                STOCKNAME
+            )
     else:
         rprint(f"[yellow]diff: {round(currentPrice-beforePrice,1)}{UNIT}[/yellow]")
         rprint("[bold yellow]SAME[/bold yellow]")
         popUp(
-            f"{STOCKNAME}: {currentPrice}$\ndiff: {round(currentPrice-beforePrice,1)}$\nSAME", config["popUp_delay"])
+                f"{STOCKNAME}: {currentPrice}$\ndiff: {round(currentPrice-beforePrice,1)}$\nSAME", 
+                config["popUp_delay"],
+                STOCKNAME
+            )
 
     time.sleep(config["check_delay"])
 
