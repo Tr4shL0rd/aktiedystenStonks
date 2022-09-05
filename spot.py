@@ -17,8 +17,7 @@ try:
     if argv[1].upper() == "DEBUG" or "d":
         DEBUG = True
 except IndexError:
-    DEBUG = False
-
+    pass
 def main():
     with open("boughtPrices.csv", "r") as boughtPricesFile:
         reader = csv.reader(boughtPricesFile)
@@ -31,7 +30,7 @@ def main():
 
     url = "https://aktiedysten.dk/z/chart?q=s.i1d.full(NYSE~SPOT)"
 
-    response = requests.request("GET", url)
+    response = requests.get(url)
 
     data = json.loads(response.text)
     price = data["Encoded"]["Data"]
