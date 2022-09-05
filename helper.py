@@ -9,5 +9,5 @@ def popUp(message: str, timeout=5, stockName="STOCKNAME"):
         pass
 
 
-def clear() -> str:
-    return "\n"*32
+def clear(amount=32) -> str:
+    print("\n"*amount)
