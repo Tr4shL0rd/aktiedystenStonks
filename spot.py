@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import csv
 import json
 import time
@@ -9,7 +10,12 @@ from rich import print as rprint
 
 with open("config.json", "r") as configFile:
     config = json.load(configFile)
-STOCKNAME = "SPOT"
+STOCKNAME="SPOT"
+UNIT="$"
+POPUP=True
+if "ANDROID_BOOTLOGO" in os.environ:
+    POPUP=False
+
 try:
     DEBUG = False
     if argv[1].upper() == "DEBUG" or "d":
@@ -23,7 +29,8 @@ def clear() -> str:
 
 
 def popUp(message: str, timeout=5):
-    subprocess.Popen(["notify-send", "-a", STOCKNAME,
+    if POPUP:
+        subprocess.Popen(["notify-send", "-a", STOCKNAME,
                      "-t", str(timeout*1000), message])
 
 
@@ -46,28 +53,28 @@ def main():
     currentPrice = round(price[-2], 1)
     beforePrice = round(price[-4], 1)
     print(
-        f"Last    Price: {beforePrice}$\n"
-        f"Current Price: {currentPrice}$"
+        f"Last    Price: {beforePrice}{UNIT}\n"
+        f"Current Price: {currentPrice}{UNIT}"
     )
     if DEBUG:
         print(price)
     if float(stockPrice[0]) <= currentPrice:  # if boughtPrice >= currentPrice:
-        rprint(f"[green]diff: {round(currentPrice-beforePrice,1)}$[/green]")
+        rprint(f"[green]diff: {round(currentPrice-beforePrice,1)}{UNIT}[/green]")
         rprint("[underline bold green]!PROFIT BOIS![/underline bold green]")
         popUp(
-            f"{STOCKNAME}: {currentPrice}$\ndiff: {round(currentPrice-beforePrice,1)}$\nPROFIT", config["popUp_delay"])
+            f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nPROFIT", config["popUp_delay"])
     elif currentPrice < beforePrice:
-        rprint(f"[red]diff: {round(currentPrice-beforePrice,1)}$[/red]")
+        rprint(f"[red]diff: {round(currentPrice-beforePrice,1)}{UNIT}[/red]")
         rprint("[underline  bold red]FALLING![/underline bold red]")
         popUp(
-            f"{STOCKNAME}: {currentPrice}$\ndiff: {round(currentPrice-beforePrice,1)}$\nFalling", config["popUp_delay"])
+            f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nFalling", config["popUp_delay"])
     elif currentPrice > beforePrice:
-        rprint(f"[green]diff: {round(currentPrice-beforePrice,1)}$[/green]")
+        rprint(f"[green]diff: {round(currentPrice-beforePrice,1)}{UNIT}[/green]")
         rprint("[underline bold green]RISING[/underline bold green]")
         popUp(
-            f"{STOCKNAME}: {currentPrice}$\ndiff: {round(currentPrice-beforePrice,1)}$\nRISING", config["popUp_delay"])
+            f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nRISING", config["popUp_delay"])
     else:
-        rprint(f"[yellow]diff: {round(currentPrice-beforePrice,1)}$[/yellow]")
+        rprint(f"[yellow]diff: {round(currentPrice-beforePrice,1)}{UNIT}[/yellow]")
         rprint("[bold yellow]SAME[/bold yellow]")
         popUp(
             f"{STOCKNAME}: {currentPrice}$\ndiff: {round(currentPrice-beforePrice,1)}$\nSAME", config["popUp_delay"])

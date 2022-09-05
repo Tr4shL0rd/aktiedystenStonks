@@ -2,6 +2,7 @@
 import os
 import json
 import requests
+import datetime
 from rich.table import Table
 from rich.console import Console
 def wifiCheck():
@@ -11,6 +12,22 @@ def wifiCheck():
         print("Could not connect to wifi")
         print("Exiting...")
         exit()
+def checkTime(onhour, onmin, offhour, offmin):
+    now = datetime.datetime.now()
+    now_time = now.time()
+    # If we're actually scheduling at night:
+    if int(offhour) < int(onhour):
+        # Check to see if we're in daylight times (ie. off schedule)
+        if datetime.time(int(offhour),int(offmin)) <= now_time <= datetime.time(int(onhour),int(onmin)):
+            return "CLOSED"
+        else:
+            return "OPEN"
+    else:
+        if datetime.time(int(onhour),int(onmin)) <= now_time <= datetime.time(int(offhour),int(offmin)):
+            return "OPEN"
+        else:
+            return "CLOSED"
+
 def stockPrice():
     urlIndex = {
         "spot": "(NYSE~SPOT)",
@@ -35,7 +52,6 @@ def stockPrice():
     currentPriceOil  = round(priceOil[-1], 1)
     currentPriceJysk = round(priceJysk[-2],1)
     return [currentPriceOil, currentPriceSpot, currentPriceJysk]
-    
 def main():
     wifiCheck()
     console = Console()
@@ -44,6 +60,14 @@ def main():
     table.add_column("PROGRAM")
     table.add_column("DESCRIPTION")
     table.add_column("PRICE")
+    table.add_column("MARKET")
+    table.add_column("OPEN TIME")
+    table.add_column("OPEN")
+    exchange = {
+        "spot": "NYSE",
+        "oil": "BRENT",
+        "jysk": "CPH",
+    }
     
     scripts = {
         "1": ["oil.py", "Oil Stock Prices"],
@@ -51,19 +75,44 @@ def main():
         "3": ["jysk.py", "Jysk Stock Prices"],
     }
     letterScripts = {
-        "oil": "1",
+        "oil":  "1",
         "spot": "2",
         "jysk": "3",
     }
     
 
     prices = {
-        "oil":  f"{str(stockPrice()[0])}$",
-        "spot": f"{str(stockPrice()[1])}$",
-        "jysk": f"{str(stockPrice()[2])}$",
+        "oil":  f"${str(stockPrice()[0])}",
+        "spot": f"${str(stockPrice()[1])}",
+        "jysk": f"{str(stockPrice()[2])}DKK",
+    }
+    openTime = {
+    "NYSE": [(15,00), (22,00)],
+    "CPH":  [(9,00),  (17,00)],
+    "BRENT": [(00,00), (23,00)],
+    }
+    openTimePretty = {
+        "NYSE": "15:00 - 22:00",
+        "CPH": "09:00 - 17:00",
+        "BRENT": "00:00 - 00:00"
     }
     for k,v in scripts.items():
-        table.add_row(k,v[0].split('.py')[0].title(), v[1],prices[v[0].split('.py')[0]])
+        table.add_row(
+            k,                                                                  # IDX
+            v[0].split('.py')[0].title(),                                       # PROGRAM 
+            v[1],                                                               # DESCRIPTION
+            prices[v[0].split('.py')[0]],                                       # PRICE
+            exchange[v[0].split('.py')[0].lower()],                             # MARKET
+            openTimePretty[exchange[v[0].split('.py')[0].lower()]],             # MARKET OPEN TIMES
+            str(                                                                # OPEN
+                checkTime(                                                      # OPEN
+                        openTime[exchange[v[0].split('.py')[0].lower()]][0][0], # OPEN (market hour open time)
+                        openTime[exchange[v[0].split('.py')[0].lower()]][0][1], # OPEN (market minute open time)
+                        openTime[exchange[v[0].split('.py')[0].lower()]][1][0], # OPEN (market hour close time)
+                        openTime[exchange[v[0].split('.py')[0].lower()]][1][1]  # OPEN (market minute close time)
+                    ) # /checkTime
+                ) # /str
+            ) # /add_row
 
     console.print(table)
     choice = input("Number: ").strip()
