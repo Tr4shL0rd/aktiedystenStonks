@@ -12,9 +12,6 @@ with open("config.json", "r") as configFile:
     config = json.load(configFile)
 STOCKNAME="SPOT"
 UNIT="$"
-POPUP=True
-if "ANDROID_BOOTLOGO" in os.environ:
-    POPUP=False
 
 try:
     DEBUG = False

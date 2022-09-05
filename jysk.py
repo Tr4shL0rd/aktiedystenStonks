@@ -12,9 +12,6 @@ with open("config.json", "r") as configFile:
     config = json.load(configFile)
 STOCKNAME="JYSK"
 UNIT="Kr."
-POPUP=True
-if "ANDROID_BOOTLOGO" in os.environ:
-    POPUP=False
 
 try:
     DEBUG = False
@@ -26,6 +23,7 @@ except IndexError:
 
 def clear() -> str:
     return "\n"*32
+
 
 
 def popUp(message: str, timeout=5):
