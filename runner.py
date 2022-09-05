@@ -41,7 +41,7 @@ def stockPrice():
 def main():
     wifiCheck()
     console = Console()
-    table = Table(title="-|STONK TOOLS|-")
+    table = Table(title="-|STONKS TOOLS|-")
     table.add_column("IDX")
     table.add_column("PROGRAM")
     table.add_column("DESCRIPTION")
