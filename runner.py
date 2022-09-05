@@ -8,7 +8,7 @@ from rich.console import Console
 import helper
 def wifiCheck():
     try:
-        return requests.get("https://www.google.com").status_code
+        requests.get("https://www.google.com")
     except requests.ConnectionError:
         print("Could not connect to wifi")
         print("Exiting...")
@@ -107,10 +107,10 @@ def main():
             openTimePretty[exchange[v[0].split('.py')[0].lower()]],             # MARKET OPEN TIMES
             str(                                                                # OPEN
                 checkTime(                                                      # OPEN
-                        openTime[exchange[v[0].split('.py')[0].lower()]][0][0], # OPEN (market hour open time)
-                        openTime[exchange[v[0].split('.py')[0].lower()]][0][1], # OPEN (market minute open time)
-                        openTime[exchange[v[0].split('.py')[0].lower()]][1][0], # OPEN (market hour close time)
-                        openTime[exchange[v[0].split('.py')[0].lower()]][1][1]  # OPEN (market minute close time)
+                        openTime[exchange[v[0].split('.py')[0].lower()]][0][0], # (market hour open time)
+                        openTime[exchange[v[0].split('.py')[0].lower()]][0][1], # (market minute open time)
+                        openTime[exchange[v[0].split('.py')[0].lower()]][1][0], # (market hour close time)
+                        openTime[exchange[v[0].split('.py')[0].lower()]][1][1]  # (market minute close time)
                     ) # /checkTime
                 ) # /str
             ) # /add_row
@@ -128,7 +128,7 @@ def main():
             program = scripts[choice][0]
     except KeyError:
         helper.clear()
-        print(f"{choice} is not valid")
+        print(f"\"{choice}\" is not valid")
         main()
     print(f"starting {program}...")
     os.system(f"python {program}")
