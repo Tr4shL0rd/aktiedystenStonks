@@ -18,6 +18,9 @@ def wifiCheck():
         print("Exiting...")
         exit()
 def checkTime(onhour, onmin, offhour, offmin):
+    '''
+        checks if current time is between 2 time slots
+    '''
     now = datetime.datetime.now()
     now_time = now.time()
     if int(offhour) < int(onhour):
@@ -31,7 +34,10 @@ def checkTime(onhour, onmin, offhour, offmin):
         else:
             return "CLOSED"
 
-def stockPrice():
+def stockPrice() -> list:
+    '''
+        returns the current price of the listed stocks
+    '''
     # url endpoints for stock prices
     urlIndex = {
         "spot": "(NYSE~SPOT)",
@@ -100,14 +106,14 @@ def main():
     }
     # opening and closing times for each market
     openTime = {
-    "NYSE": [(15,00), (22,00)],
-    "CPH":  [(9,00),  (17,00)],
+    "NYSE":  [(15,00), (22,00)],
+    "CPH":   [(9 ,00), (17,00)],
     "BRENT": [(00,00), (23,00)],
     }
     # prettier way of showing closing-opening times for the table 
     openTimePretty = {
-        "NYSE": "15:00 - 22:00",
-        "CPH": "09:00 - 17:00",
+        "NYSE":  "15:00 - 22:00",
+        "CPH":   "09:00 - 17:00",
         "BRENT": "00:00 - 00:00"
     }
     # fills the table
