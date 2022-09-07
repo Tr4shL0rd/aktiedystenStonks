@@ -1,4 +1,6 @@
 import subprocess
+import json
+
 
 def flatten(l):
     '''
@@ -21,3 +23,11 @@ def clear(amount=32):
         clears the screen with \n * amount
     '''
     print("\n"*amount)
+
+def loadJson():
+    '''
+        loads the json config file
+    '''
+    return json.load(open("config.json"))
+
+

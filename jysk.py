@@ -3,12 +3,11 @@ import csv
 import json
 import time
 import requests
-from helper import popUp,clear
+import helper
 from sys import argv
 from rich import print as rprint
 
-with open("config.json", "r") as configFile:
-    config = json.load(configFile)
+config = helper.loadJson()
 STOCKNAME="JYSK"
 UNIT="Kr."
 
@@ -46,7 +45,7 @@ def main():
     if float(stockPrice[0]) <= currentPrice:  # if boughtPrice >= currentPrice:
         rprint(f"[green]diff: {round(currentPrice-beforePrice,1)}{UNIT}[/green]")
         rprint("[underline bold green]!PROFIT BOIS![/underline bold green]")
-        popUp(
+        helper.popUp(
                 f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nPROFIT", 
                 config["popUp_delay"],
                 STOCKNAME
@@ -54,7 +53,7 @@ def main():
     elif currentPrice < beforePrice:
         rprint(f"[red]diff: {round(currentPrice-beforePrice,1)}{UNIT}[/red]")
         rprint("[underline  bold red]FALLING![/underline bold red]")
-        popUp(
+        helper.popUp(
                 f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nFalling", 
                 config["popUp_delay"],
                 STOCKNAME
@@ -62,7 +61,7 @@ def main():
     elif currentPrice > beforePrice:
         rprint(f"[green]diff: {round(currentPrice-beforePrice,1)}{UNIT}[/green]")
         rprint("[underline bold green]RISING[/underline bold green]")
-        popUp(
+        helper.popUp(
                 f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nRISING", 
                 config["popUp_delay"],
                 STOCKNAME
@@ -70,7 +69,7 @@ def main():
     else:
         rprint(f"[yellow]diff: {round(currentPrice-beforePrice,1)}{UNIT}[/yellow]")
         rprint("[bold yellow]SAME[/bold yellow]")
-        popUp(
+        helper.popUp(
                 f"{STOCKNAME}: {currentPrice}{UNIT}\ndiff: {round(currentPrice-beforePrice,1)}{UNIT}\nSAME", 
                 config["popUp_delay"],
                 STOCKNAME
