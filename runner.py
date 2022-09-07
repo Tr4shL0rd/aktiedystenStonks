@@ -42,9 +42,9 @@ def stockPrice():
     url = "https://aktiedysten.dk/z/chart?q=s.i1d.full"
 
     # response for each url 
-    responseSpot = requests.request("GET", f"{url}{urlIndex['spot']}")
-    responseOil  = requests.request("GET",  f"{url}{urlIndex['oil']}")
-    responseJysk = requests.request("GET", f"{url}{urlIndex['jysk']}")
+    responseSpot = requests.get(f"{url}{urlIndex['spot']}")
+    responseOil  = requests.get(f"{url}{urlIndex['oil']}")
+    responseJysk = requests.get(f"{url}{urlIndex['jysk']}")
     # data from each response 
     dataSpot = json.loads(responseSpot.text)
     dataOil  = json.loads(responseOil.text)
