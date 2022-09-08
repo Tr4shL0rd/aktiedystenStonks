@@ -86,9 +86,9 @@ def main():
     # a dict for the script name and description (description is not used anymore (find a way to remove))
     # number to program name
     scripts = {
-        "1": ["oil.py" , "Oil Stock Prices"],
-        "2": ["spot.py", "Spotify Stock Prices"],
-        "3": ["jysk.py", "Jysk Stock Prices"],
+        "1": "oil.py" ,
+        "2": "spot.py",
+        "3": "jysk.py",
     }
     # letterScripts converts program name string into program index
     # program name to number
@@ -120,16 +120,16 @@ def main():
     for k,v in scripts.items():
         table.add_row(
             k,                                                                  # IDX
-            v[0].split('.py')[0].title(),                                       # PROGRAM 
-            prices[v[0].split('.py')[0]],                                       # PRICE
-            exchange[v[0].split('.py')[0].lower()],                             # MARKET
-            openTimePretty[exchange[v[0].split('.py')[0].lower()]],             # MARKET OPEN TIMES
+            v.split('.py')[0].title(),                                       # PROGRAM 
+            prices[v.split('.py')[0]],                                       # PRICE
+            exchange[v.split('.py')[0].lower()],                             # MARKET
+            openTimePretty[exchange[v.split('.py')[0].lower()]],             # MARKET OPEN TIMES
             str(                                                                # OPEN
                 checkTime(                                                      # OPEN
-                        openTime[exchange[v[0].split('.py')[0].lower()]][0][0], # (market hour open time)
-                        openTime[exchange[v[0].split('.py')[0].lower()]][0][1], # (market minute open time)
-                        openTime[exchange[v[0].split('.py')[0].lower()]][1][0], # (market hour close time)
-                        openTime[exchange[v[0].split('.py')[0].lower()]][1][1]  # (market minute close time)
+                        openTime[exchange[v.split('.py')[0].lower()]][0][0], # (market hour open time)
+                        openTime[exchange[v.split('.py')[0].lower()]][0][1], # (market minute open time)
+                        openTime[exchange[v.split('.py')[0].lower()]][1][0], # (market hour close time)
+                        openTime[exchange[v.split('.py')[0].lower()]][1][1]  # (market minute close time)
                     ) # /checkTime
                 ) # /str
             ) # /add_row
@@ -159,20 +159,20 @@ def main():
     try:
         # checks if user input is alphabetic and is a valid input against letterScripts
         if choice.isalpha() and choice in letterScripts:
-            program = scripts[letterScripts[choice]][0] # converts a name string into the correct program name 
+            program = scripts[letterScripts[choice]] # converts a name string into the correct program name 
         # checks if user input is a number and less then the amount of available script -1
         elif choice.isdigit() and  int(choice) > len(scripts):
             helper.clear()
             print(f"number cant be higher than {len(scripts)}")
             main()
         else:
-            program = scripts[choice][0]
+            program = scripts[choice]
     except KeyError:
         helper.clear()
         print(f"\"{choice}\" is not a valid program or command!")
         main()
     print(f"starting {program}...")
-    os.system(f"python {program}")
+    os.system(f"python stockScripts/{program}")
 try:
     main()
 except KeyboardInterrupt:
