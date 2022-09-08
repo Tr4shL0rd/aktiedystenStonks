@@ -119,13 +119,13 @@ def main():
     # fills the table
     for k,v in scripts.items():
         table.add_row(
-            k,                                                                  # IDX
+            k,                                                               # IDX
             v.split('.py')[0].title(),                                       # PROGRAM 
             prices[v.split('.py')[0]],                                       # PRICE
             exchange[v.split('.py')[0].lower()],                             # MARKET
             openTimePretty[exchange[v.split('.py')[0].lower()]],             # MARKET OPEN TIMES
-            str(                                                                # OPEN
-                checkTime(                                                      # OPEN
+            str(                                                             # OPEN
+                checkTime(                                                   # OPEN
                         openTime[exchange[v.split('.py')[0].lower()]][0][0], # (market hour open time)
                         openTime[exchange[v.split('.py')[0].lower()]][0][1], # (market minute open time)
                         openTime[exchange[v.split('.py')[0].lower()]][1][0], # (market hour close time)
