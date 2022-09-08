@@ -78,6 +78,7 @@ pip install -r requirements.txt
 
 -   [ ] Prettier CLI
 -   [ ] More modular way of adding new scripts 
+-   [ ] Better way of parsing cli commands
 
 <!--Table Of DONE-->
 ## Done  
