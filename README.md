@@ -9,8 +9,7 @@
 
 -   [Description](#DESCRIPTION)
 -   [Installation](#INSTALLATION)
--   [Build](#BUILD)
--   [Todo](#DOING)
+-   [Todo](#TODO)
 -   [Known Bugs](#BUGS)
 -   [Built With](#BUIlT-WITH)
 -   [Acknowledgements](#ACKNOWLEDGEMENTS)
@@ -30,7 +29,7 @@
 -   [MACOS](README.md#macOS)
 -   [WINDOWS](README.md#Windows)
 
-# Linux
+## Linux
 
 ### Debian-based Linux
 
@@ -60,14 +59,14 @@ sudo yum install -y python3.10
 pip install -r requirements.txt
 ```
 
-# MacOS
+## MacOS
 
 ```mac
 brew install python3.10
 pip install -r requirements.txt
 ```
 
-# Windows
+## Windows
 
 -   install python from [python.org](https://www.python.org/downloads/)
 
