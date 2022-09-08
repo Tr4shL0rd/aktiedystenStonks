@@ -19,7 +19,7 @@
 
 # DESCRIPTION
 
-**aktiedystenStonks** is a Command-line interface application used to regualry check the current price of stocks. The application checks the current price of stocks every 30 seconds.
+**aktiedystenStonks** is a Command-line interface application used to regualry check the current price of stocks. The application checks the current price of stocks every 30 seconds.<br>
 **aktiedystenStonks** Gets it's data from [aktiedysten.dk](https://aktiedysten.dk/).  
 
 
