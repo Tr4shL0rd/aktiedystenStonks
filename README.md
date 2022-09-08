@@ -105,7 +105,6 @@ pip install -r requirements.txt
 
 -   [flaticon.com](https://www.flaticon.com/)
 -   [img.shields.io](https://img.shields.io/)
--   [GeeksForGeeks.org](https://www.geeksforgeeks.org/)
 -   [README.md template](https://github.com/othneildrew/Best-README-Template)
 
 # LICENSE
