@@ -118,18 +118,19 @@ def main():
     }
     # fills the table
     for k,v in scripts.items():
+        progName = v.split(".py")[0]
         table.add_row(
-            k,                                                               # IDX
-            v.split('.py')[0].title(),                                       # PROGRAM 
-            prices[v.split('.py')[0]],                                       # PRICE
-            exchange[v.split('.py')[0].lower()],                             # MARKET
-            openTimePretty[exchange[v.split('.py')[0].lower()]],             # MARKET OPEN TIMES
-            str(                                                             # OPEN
-                checkTime(                                                   # OPEN
-                        openTime[exchange[v.split('.py')[0].lower()]][0][0], # (market hour open time)
-                        openTime[exchange[v.split('.py')[0].lower()]][0][1], # (market minute open time)
-                        openTime[exchange[v.split('.py')[0].lower()]][1][0], # (market hour close time)
-                        openTime[exchange[v.split('.py')[0].lower()]][1][1]  # (market minute close time)
+            k,                                                      # IDX
+            progName.title(),                                       # PROGRAM 
+            prices[progName],                                       # PRICE
+            exchange[progName.lower()],                             # MARKET
+            openTimePretty[exchange[progName.lower()]],             # MARKET OPEN TIMES
+            str(                                                    # OPEN
+                checkTime(                                          # OPEN
+                        openTime[exchange[progName.lower()]][0][0], # (market hour open time)
+                        openTime[exchange[progName.lower()]][0][1], # (market minute open time)
+                        openTime[exchange[progName.lower()]][1][0], # (market hour close time)
+                        openTime[exchange[progName.lower()]][1][1]  # (market minute close time)
                     ) # /checkTime
                 ) # /str
             ) # /add_row
