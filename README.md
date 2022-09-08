@@ -76,10 +76,12 @@ pip install -r requirements.txt
 
 # TODO
 
+-   [ ] Add caching
+-   [ ] Add Quiet mode
 -   [ ] Prettier CLI
+-   [ ] Run multiple scripts at once
 -   [ ] More modular way of adding new scripts 
 -   [ ] Better way of parsing cli commands
-
 <!--Table Of DONE-->
 ## Done  
 <details>
