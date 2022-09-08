@@ -102,7 +102,7 @@ pip install -r requirements.txt
 -   [Rich](https://github.com/Textualize/rich)
 
 # ACKNOWLEDGEMENTS
-
+-   [aktiedysten.dk](https://aktiedysten.dk/)
 -   [flaticon.com](https://www.flaticon.com/)
 -   [img.shields.io](https://img.shields.io/)
 -   [README.md template](https://github.com/othneildrew/Best-README-Template)
