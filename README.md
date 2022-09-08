@@ -20,9 +20,9 @@
 
 # DESCRIPTION
 
-**ytDownloader** is a Command-line / graphical user interface application based on [youtube-dl](https://github.com/ytdl-org/youtube-dl). The application is written in python3.10 and allows the user to downloads a youtube video from a url and then it automatically converts it into a audio file and sends that file to your email address.
+**aktiedystenStonks** is a Command-line interface application used to regualry check the current price of stocks. The application checks the current price of stocks every 30 seconds.
+**aktiedystenStonks** Gets it's data from [aktiedysten.dk](https://aktiedysten.dk/).  
 
-**Please be aware that since this program uses gmail to send the files, you need to toggle *["Less secure app access"](https://support.google.com/accounts/answer/6010255?hl=en)* on in your gmail account settings.** *I am looking for an alternative to gmail for this project.*
 
 # INSTALLATION
 
