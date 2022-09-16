@@ -61,6 +61,7 @@ def stockPrice() -> list:
     dataSpot = json.loads(responseSpot.text)
     dataOil  = json.loads(responseOil.text)
     dataJysk = json.loads(responseJysk.text)
+    
     # price array from data (might be possible to do it in a smarter way)
     priceSpot = dataSpot["Encoded"]["Data"]
     priceOil  = dataOil["Encoded"]["Data"]
@@ -117,6 +118,7 @@ def main(load:bool=True):
     }
     # fills the table
     if load:
+        print("LOADING...")
         # formatted pricing 
         prices = {
             "oil":  f"${str(stockPrice()[0])}",
@@ -140,6 +142,7 @@ def main(load:bool=True):
                         ) # /checkTime
                     ) # /str
                 ) # /add_row
+        helper.clear()
         console.print(table)
     # overview of the commands
     commands = {
@@ -151,17 +154,16 @@ def main(load:bool=True):
     for key in (allCommands := helper.flatten(list(commands.items()))):  
         # Removes key dupes
         allCommands.remove(key) 
-    allCommands = helper.flatten(allCommands) + ["blank"] # flattens the list once more
+    allCommands = helper.flatten(allCommands)# flattens the list once more
     choice = input(">> ").strip()
     # checks user input against the available commands (switch case might be better)
     if choice in allCommands:
         if choice in commands["help"]:
             helpFunc()
-            #choice = "blank"
             main(False)
         if choice in commands["reload"]:
             helper.clear(40)
-            main()
+            main(True)
         if choice in commands["exit"]:
             print("EXITING...")
             exit()
