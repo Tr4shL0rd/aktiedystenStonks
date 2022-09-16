@@ -199,12 +199,15 @@ def main(load:bool=True):
     print(f"starting {program}....")
     os.system(f"python stockScripts/{program}")
 try:
-    if argv[1] == "--help" or argv[1] == "-h":
-        helpFunc()
-        exit()
-    if argv[1] == "--version" or argv[1] == "-v" or argv[1] == "version":
-        print(f"Aktiedysten Stonks v{config['version']}\nCreated By @Tr4shL0rd")
-        exit()
+    try:
+        if argv[1] == "--help" or argv[1] == "-h":
+            helpFunc()
+            exit()
+        if argv[1] == "--version" or argv[1] == "-v" or argv[1] == "version":
+            print(f"Aktiedysten Stonks v{config['version']}\nCreated By @Tr4shL0rd")
+            exit()
+    except IndexError:
+        pass
     main()
 except KeyboardInterrupt:
     print("Exiting....")
