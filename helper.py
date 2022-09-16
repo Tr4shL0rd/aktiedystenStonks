@@ -4,7 +4,7 @@ from currency_converter import CurrencyConverter
 
 def flatten(l:list):
     '''
-        flattens and returns list l
+        flattens l:list and returns new list 
     '''
     return [item for sublist in l for item in sublist]
 
