@@ -3,9 +3,13 @@ import csv
 import json
 import time
 import requests
-import helper
 from sys import argv
 from rich import print as rprint
+import sys
+import os.path
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+import helper
 
 config = helper.loadJson()
 STOCKNAME="JYSK"
