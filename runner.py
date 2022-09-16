@@ -75,6 +75,7 @@ def stockPrice() -> list:
     currentPriceOil  = round(priceOil[-1], 1)
     currentPriceJysk = round(priceJysk[-2],1)
     currentPriceBeat = round(priceBeat[-2],1)
+
     return [currentPriceOil, currentPriceSpot, currentPriceJysk, currentPriceBeat]
 def main(load:bool=True):
     # checks wifi connection
@@ -134,7 +135,7 @@ def main(load:bool=True):
         prices = {
             "oil":  f"${str(stockPrice()[0])}",
             "spot": f"${str(stockPrice()[1])}",
-            "jysk": f"{str(stockPrice()[2])}DKK",
+            "jysk": f"${str(helper.convertCurrency(stockPrice()[2]))}",
             "beat": f"${str(stockPrice()[3])}",
         }
         for k,v in scripts.items():
