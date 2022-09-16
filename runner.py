@@ -103,18 +103,11 @@ def main(load:bool=True):
         "spot": "2",
         "jysk": "3",
     }
-    if load:
-        # formatted pricing 
-        prices = {
-            "oil":  f"${str(stockPrice()[0])}",
-            "spot": f"${str(stockPrice()[1])}",
-            "jysk": f"{str(stockPrice()[2])}DKK",
-        }
     # opening and closing times for each market
     openTime = {
-    "NYSE":  [(15,00), (22,00)],
-    "CPH":   [(9 ,00), (17,00)],
-    "BRENT": [(00,00), (23,00)],
+        "NYSE":  [(15,00), (22,00)],
+        "CPH":   [(9 ,00), (17,00)],
+        "BRENT": [(00,00), (23,00)],
     }
     # prettier way of showing closing-opening times for the table 
     openTimePretty = {
@@ -124,6 +117,12 @@ def main(load:bool=True):
     }
     # fills the table
     if load:
+        # formatted pricing 
+        prices = {
+            "oil":  f"${str(stockPrice()[0])}",
+            "spot": f"${str(stockPrice()[1])}",
+            "jysk": f"{str(stockPrice()[2])}DKK",
+        }
         for k,v in scripts.items():
             progName = v.split(".py")[0]
             table.add_row(
