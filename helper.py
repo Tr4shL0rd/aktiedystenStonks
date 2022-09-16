@@ -24,7 +24,7 @@ def clear(amount=32):
     '''
     print("\n"*amount)
 
-def loadJson():
+def loadConfig():
     '''
         loads the json config file
     '''
