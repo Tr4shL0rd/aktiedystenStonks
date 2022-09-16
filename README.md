@@ -81,7 +81,7 @@ pip install -r requirements.txt
 - [ ] Better way of parsing cli commands
 
 <!--Table Of DONE-->
-## Done  
+## Done
 
 <details>
 <summary>Done</summary>
@@ -100,6 +100,7 @@ pip install -r requirements.txt
 # BUILT WITH
 
 -   [Rich](https://github.com/Textualize/rich)
+-   [Python3](https://www.python.org/)
 
 # ACKNOWLEDGEMENTS
 -   [aktiedysten.dk](https://aktiedysten.dk/)
