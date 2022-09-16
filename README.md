@@ -92,7 +92,12 @@ pip install -r requirements.txt
 
 </details>
 
+## Nice To Have
+<details>
+<summary>Nice To Have</summary>
+- [ ] automated testing
 
+</details>
 # BUGS
 
 * no known bugs at the moment
