@@ -7,6 +7,7 @@ import datetime
 from sys import argv
 from rich.table import Table
 from rich.console import Console
+from datetime import datetime
 config = helper.loadConfig()
 
 def wifiCheck():
@@ -19,12 +20,12 @@ def wifiCheck():
         print("Could not connect to wifi")
         print("Exiting...")
         exit()
-def checkTime(onhour, onmin, offhour, offmin):
+def checkTime(onhour:str, onmin:str, offhour:str, offmin:str, now_time:datetime=datetime.now().time()) -> str:
     '''
-        checks if current time is between 2 time slots
+        checks if current time is between 2 time slots\n
+        takes hour and minute of 2 different time slots
     '''
-    now = datetime.datetime.now()
-    now_time = now.time()
+    # if the hour of time slot 2 is earlier than the hour of time slot 1 
     if int(offhour) < int(onhour):
         if datetime.time(int(offhour),int(offmin)) <= now_time <= datetime.time(int(onhour),int(onmin)):
             return "CLOSED"
@@ -35,7 +36,10 @@ def checkTime(onhour, onmin, offhour, offmin):
             return "OPEN"
         else:
             return "CLOSED"
-def helpFunc():
+def helpFunc() -> None:
+    '''
+        reads help.txt and prints the data 
+    '''
     with open("help.txt", "r") as helpFile:
         lines = helpFile.readlines()
         for line in lines:
