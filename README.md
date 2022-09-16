@@ -88,9 +88,9 @@ pip install -r requirements.txt
 <li>
         
 
--   [✓] Prettier CLI
--   [✓] Better Comments
--   [✓] Code Clean up
+-   [x] Prettier CLI
+-   [x] Better Comments
+-   [x] Code Clean up
 
 </li>
 </details>
