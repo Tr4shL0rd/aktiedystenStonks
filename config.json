@@ -2,5 +2,5 @@
     "version": 0.5,
     "check_delay": 30,
     "popUp_delay": 5,
-    "default_currency": "USD"
+    "default_currency_target": "USD"
 }
