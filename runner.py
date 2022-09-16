@@ -136,7 +136,7 @@ def main(load:bool=True):
         prices = {
             "oil":  f"${str(stockPrice()[0])}",
             "spot": f"${str(stockPrice()[1])}",
-            "jysk": f"${str(helper.convertCurrency(stockPrice()[2], fromCurrency='DKK', targetCurrency='USD'))}",
+            "jysk": f"${str(helper.convertCurrency(stockPrice()[2], fromCurrency='DKK', targetCurrency=config['default_currency_target']))}",
             "beat": f"${str(stockPrice()[3])}",
         }
         for k,v in scripts.items():
