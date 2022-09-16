@@ -172,7 +172,7 @@ def main():
         helper.clear()
         print(f"\"{choice}\" is not a valid program or command!")
         main()
-    print(f"starting {program}...")
+    print(f"starting {program}....")
     os.system(f"python stockScripts/{program}")
 try:
     main()
