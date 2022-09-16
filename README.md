@@ -85,14 +85,11 @@ pip install -r requirements.txt
 
 <details>
 <summary>Done</summary>
-<li>
-        
 
 - [x] Prettier CLI
 - [x] Better Comments
 - [x] Code Clean up
 
-</li>
 </details>
 
 
