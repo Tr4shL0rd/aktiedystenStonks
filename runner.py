@@ -7,6 +7,7 @@ import datetime
 from sys import argv
 from rich.table import Table
 from rich.console import Console
+config = helper.loadConfig()
 
 def wifiCheck():
     '''
@@ -135,7 +136,7 @@ def main(load:bool=True):
         prices = {
             "oil":  f"${str(stockPrice()[0])}",
             "spot": f"${str(stockPrice()[1])}",
-            "jysk": f"${str(helper.convertCurrency(stockPrice()[2]))}",
+            "jysk": f"${str(helper.convertCurrency(stockPrice()[2], fromCurrency='DKK', targetCurrency='USD'))}",
             "beat": f"${str(stockPrice()[3])}",
         }
         for k,v in scripts.items():
@@ -198,6 +199,12 @@ def main(load:bool=True):
     print(f"starting {program}....")
     os.system(f"python stockScripts/{program}")
 try:
+    if argv[1] == "--help" or argv[1] == "-h":
+        helpFunc()
+        exit()
+    if argv[1] == "--version" or argv[1] == "-v" or argv[1] == "version":
+        print(f"Aktiedysten Stonks v{config['version']}\nCreated By @Tr4shL0rd")
+        exit()
     main()
 except KeyboardInterrupt:
     print("Exiting....")
