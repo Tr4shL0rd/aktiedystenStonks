@@ -11,7 +11,7 @@ sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 import helper
 
-config = helper.loadJson()
+config = helper.loadConfig()
 STOCKNAME="JYSK"
 UNIT="Kr."
 
