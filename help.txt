@@ -1,0 +1,7 @@
+Usage: >> [OPTIONS]
+  OPTIONS:
+    help   : Displays this message.
+    reload : Reloads the stock prices.
+    exit   : Exits the program.
+Created By @Tr4shL0rd
+    
