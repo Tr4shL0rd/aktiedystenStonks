@@ -1,4 +1,6 @@
 {
+    "version": 0.5,
     "check_delay": 30,
-    "popUp_delay": 5
+    "popUp_delay": 5,
+    "default_currency": "USD"
 }
