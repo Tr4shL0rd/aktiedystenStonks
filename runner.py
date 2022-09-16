@@ -4,6 +4,7 @@ import json
 import helper
 import requests
 import datetime
+from sys import argv
 from rich.table import Table
 from rich.console import Console
 
@@ -33,6 +34,11 @@ def checkTime(onhour, onmin, offhour, offmin):
             return "OPEN"
         else:
             return "CLOSED"
+def helpFunc():
+    with open("help.txt", "r") as helpFile:
+        lines = helpFile.readlines()
+        for line in lines:
+            print(line.replace("\n", ""))
 
 def stockPrice() -> list:
     '''
@@ -64,7 +70,7 @@ def stockPrice() -> list:
     currentPriceOil  = round(priceOil[-1], 1)
     currentPriceJysk = round(priceJysk[-2],1)
     return [currentPriceOil, currentPriceSpot, currentPriceJysk]
-def main():
+def main(load:bool=True):
     # checks wifi connection
     wifiCheck()
     console = Console()
@@ -97,13 +103,13 @@ def main():
         "spot": "2",
         "jysk": "3",
     }
-    
-    # formatted pricing 
-    prices = {
-        "oil":  f"${str(stockPrice()[0])}",
-        "spot": f"${str(stockPrice()[1])}",
-        "jysk": f"{str(stockPrice()[2])}DKK",
-    }
+    if load:
+        # formatted pricing 
+        prices = {
+            "oil":  f"${str(stockPrice()[0])}",
+            "spot": f"${str(stockPrice()[1])}",
+            "jysk": f"{str(stockPrice()[2])}DKK",
+        }
     # opening and closing times for each market
     openTime = {
     "NYSE":  [(15,00), (22,00)],
@@ -117,23 +123,25 @@ def main():
         "BRENT": "00:00 - 00:00"
     }
     # fills the table
-    for k,v in scripts.items():
-        progName = v.split(".py")[0]
-        table.add_row(
-            k,                                                      # IDX
-            progName.title(),                                       # PROGRAM 
-            prices[progName],                                       # PRICE
-            exchange[progName.lower()],                             # MARKET
-            openTimePretty[exchange[progName.lower()]],             # MARKET OPEN TIMES
-            str(                                                    # OPEN
-                checkTime(                                          # OPEN
-                        openTime[exchange[progName.lower()]][0][0], # (market hour open time)
-                        openTime[exchange[progName.lower()]][0][1], # (market minute open time)
-                        openTime[exchange[progName.lower()]][1][0], # (market hour close time)
-                        openTime[exchange[progName.lower()]][1][1]  # (market minute close time)
-                    ) # /checkTime
-                ) # /str
-            ) # /add_row
+    if load:
+        for k,v in scripts.items():
+            progName = v.split(".py")[0]
+            table.add_row(
+                k,                                                      # IDX
+                progName.title(),                                       # PROGRAM 
+                prices[progName],                                       # PRICE
+                exchange[progName.lower()],                             # MARKET
+                openTimePretty[exchange[progName.lower()]],             # MARKET OPEN TIMES
+                str(                                                    # OPEN
+                    checkTime(                                          # OPEN
+                            openTime[exchange[progName.lower()]][0][0], # (market hour open time)
+                            openTime[exchange[progName.lower()]][0][1], # (market minute open time)
+                            openTime[exchange[progName.lower()]][1][0], # (market hour close time)
+                            openTime[exchange[progName.lower()]][1][1]  # (market minute close time)
+                        ) # /checkTime
+                    ) # /str
+                ) # /add_row
+        console.print(table)
     # overview of the commands
     commands = {
         "help":   ["help", "h"],
@@ -144,13 +152,14 @@ def main():
     for key in (allCommands := helper.flatten(list(commands.items()))):  
         # Removes key dupes
         allCommands.remove(key) 
-    allCommands = helper.flatten(allCommands) # flattens the list once more
-    console.print(table)
+    allCommands = helper.flatten(allCommands) + ["blank"] # flattens the list once more
     choice = input(">> ").strip()
     # checks user input against the available commands (switch case might be better)
     if choice in allCommands:
         if choice in commands["help"]:
-            print(allCommands)
+            helpFunc()
+            #choice = "blank"
+            main(False)
         if choice in commands["reload"]:
             helper.clear(40)
             main()
