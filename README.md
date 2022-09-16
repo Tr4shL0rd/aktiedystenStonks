@@ -76,16 +76,19 @@ pip install -r requirements.txt
 
 # TODO
 
--   [ ] Prettier CLI
+-   [ ] Add caching for fetching price data
 -   [ ] More modular way of adding new scripts 
 -   [ ] Better way of parsing cli commands
 
 <!--Table Of DONE-->
 ## Done  
+
 <details>
 <summary>Done</summary>
 <li>
         
+
+-   [✓] Prettier CLI
 -   [✓] Better Comments
 -   [✓] Code Clean up
 
