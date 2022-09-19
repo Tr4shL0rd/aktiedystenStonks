@@ -7,7 +7,7 @@ import datetime
 from sys import argv
 from rich.table import Table
 from rich.console import Console
-from datetime import datetime
+import datetime
 config = helper.loadConfig()
 
 def wifiCheck():
@@ -20,19 +20,19 @@ def wifiCheck():
         print("Could not connect to wifi")
         print("Exiting...")
         exit()
-def checkTime(onhour:str, onmin:str, offhour:str, offmin:str, now_time:datetime=datetime.now().time()) -> str:
+def checkTime(onhour:str, onmin:str, offhour:str, offmin:str, now_time:datetime=datetime.datetime.now().time()) -> str:
     '''
         checks if current time is between 2 time slots\n
         takes hour and minute of 2 different time slots
     '''
     # if the hour of time slot 2 is earlier than the hour of time slot 1 
-    if int(offhour) < int(onhour):
-        if datetime.time(int(offhour),int(offmin)) <= now_time <= datetime.time(int(onhour),int(onmin)):
+    if offhour < onhour:
+        if datetime.time(offhour,offmin) <= now_time <= datetime.time(onhour,onmin):
             return "CLOSED"
         else:
             return "OPEN"
     else:
-        if datetime.time(int(onhour),int(onmin)) <= now_time <= datetime.time(int(offhour),int(offmin)):
+        if datetime.time(onhour,onmin) <= now_time <= datetime.time(offhour,offmin):
             return "OPEN"
         else:
             return "CLOSED"
