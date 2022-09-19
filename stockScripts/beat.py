@@ -38,7 +38,6 @@ def main():
 
     data = json.loads(response.text)
     price = data["Encoded"]["Data"]
-    print(price)
     currentPrice = round(price[-2], 1)
     beforePrice = round(price[-6], 1)
     print(
