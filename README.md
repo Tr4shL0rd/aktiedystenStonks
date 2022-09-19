@@ -76,24 +76,39 @@ pip install -r requirements.txt
 
 # TODO
 
+<<<<<<< HEAD
 -   [ ] Add caching
 -   [ ] Add Quiet mode
 -   [ ] Prettier CLI
 -   [ ] Run multiple scripts at once
 -   [ ] More modular way of adding new scripts 
 -   [ ] Better way of parsing cli commands
+=======
+- [ ] Add caching for fetching price data
+- [ ] More modular way of adding new scripts 
+- [ ] Better way of parsing cli commands
+
+>>>>>>> refs/remotes/origin/main
 <!--Table Of DONE-->
-## Done  
+## Done
+
 <details>
 <summary>Done</summary>
-<li>
-        
--   [✓] Better Comments
--   [✓] Code Clean up
 
-</li>
+- [x] Prettier CLI
+- [x] Better Comments
+- [x] Code Clean up
+
 </details>
 
+## Nice To Have
+
+<details>
+<summary>Nice To Have</summary>
+
+- [ ] automated testing
+
+</details>
 
 # BUGS
 
@@ -102,6 +117,7 @@ pip install -r requirements.txt
 # BUILT WITH
 
 -   [Rich](https://github.com/Textualize/rich)
+-   [Python3](https://www.python.org/)
 
 # ACKNOWLEDGEMENTS
 -   [aktiedysten.dk](https://aktiedysten.dk/)

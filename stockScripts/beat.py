@@ -12,8 +12,8 @@ sys.path.append(
 import helper
 
 config = helper.loadConfig()
-STOCKNAME="JYSK"
-UNIT="Kr."
+STOCKNAME="BEAT"
+UNIT="$"
 
 try:
     DEBUG = False
@@ -32,7 +32,7 @@ def main():
             stockName.append(row[0])
             stockPrice.append(row[1])
 
-    url = "https://aktiedysten.dk/z/chart?q=s.i1d.full(CPH~JYSK)"
+    url = "https://aktiedysten.dk/z/chart?q=s.i1d.full(NASDAQ~BEAT)"
 
     response = requests.get(url)
 

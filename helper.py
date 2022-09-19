@@ -1,10 +1,10 @@
 import subprocess
 import json
+from currency_converter import CurrencyConverter
 
-
-def flatten(l):
+def flatten(l:list):
     '''
-        flattens and returns list l
+        flattens l:list and returns new list 
     '''
     return [item for sublist in l for item in sublist]
 
@@ -24,10 +24,18 @@ def clear(amount=32):
     '''
     print("\n"*amount)
 
-def loadJson():
+def loadConfig():
     '''
         loads the json config file
     '''
     return json.load(open("config.json"))
 
-
+def convertCurrency(amount, fromCurrency:str="DKK",targetCurrency:str="USD"):
+    '''
+        converts amount:int or str of fromCurrency:str to targetCurrency:str 
+        >>> convertCurrency(100, "DKK", "USD")
+        13.43kr.
+        >>> convertCurrency(100, "USD", "DKK")
+        $744.33
+    '''
+    return round(CurrencyConverter().convert(amount, fromCurrency, targetCurrency),1)
