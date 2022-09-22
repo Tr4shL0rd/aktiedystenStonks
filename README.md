@@ -76,19 +76,17 @@ pip install -r requirements.txt
 
 # TODO
 
-<<<<<<< HEAD
 -   [ ] Add caching
 -   [ ] Add Quiet mode
 -   [ ] Prettier CLI
 -   [ ] Run multiple scripts at once
 -   [ ] More modular way of adding new scripts 
 -   [ ] Better way of parsing cli commands
-=======
-- [ ] Add caching for fetching price data
-- [ ] More modular way of adding new scripts 
-- [ ] Better way of parsing cli commands
 
->>>>>>> refs/remotes/origin/main
+-   [ ] Add caching for fetching price data
+-   [ ] More modular way of adding new scripts 
+-   [ ] Better way of parsing cli commands
+
 <!--Table Of DONE-->
 ## Done
 
