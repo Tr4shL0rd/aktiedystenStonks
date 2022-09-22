@@ -78,21 +78,17 @@ pip install -r requirements.txt
 
 -   [ ] Add caching
 -   [ ] Add Quiet mode
--   [ ] Prettier CLI
 -   [ ] Run multiple scripts at once
 -   [ ] More modular way of adding new scripts 
--   [ ] Better way of parsing cli commands
 
--   [ ] Add caching for fetching price data
--   [ ] More modular way of adding new scripts 
--   [ ] Better way of parsing cli commands
 
 <!--Table Of DONE-->
 ## Done
 
 <details>
 <summary>Done</summary>
-
+  
+- [x] Better way of parsing cli commands
 - [x] Prettier CLI
 - [x] Better Comments
 - [x] Code Clean up
